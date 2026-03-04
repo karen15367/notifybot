@@ -14,4 +14,8 @@ export class TelegramSender implements MessageSender {
     async send(message: Message): Promise<void> {
         await this.bot.sendMessage(this.chatId, message.text);
     }
+
+    async sendToChat(chatId: string, text: string): Promise<void> {
+        await this.bot.sendMessage(chatId, text);
+    }
 }
