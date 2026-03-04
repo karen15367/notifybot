@@ -4,6 +4,7 @@
 interface EnvVars{
     TELEGRAM_TOKEN?: string;
     TELEGRAM_CHAT_ID?: string;
+    SCHEDULED_MESSAGE?: string;
 }
 
 // define la forma del objeto que devuelve la funcion
@@ -12,6 +13,7 @@ interface EnvVars{
 export interface AppConfig{
     telegramToken: string;
     telegramChatId: string;
+    scheduledMessage: string;
 }
 
 // recibe un EnvVars (donde todo puede faltar) y devuelve un AppConfig
@@ -31,7 +33,8 @@ export function validateConfig(env: EnvVars): AppConfig{
     // de la interfaz cuando viene de un array de strings
     return {
         telegramToken: env.TELEGRAM_TOKEN!,
-        telegramChatId: env.TELEGRAM_CHAT_ID!
+        telegramChatId: env.TELEGRAM_CHAT_ID!,
+        scheduledMessage: env.SCHEDULED_MESSAGE || 'Este es tu recordatorio automático para revisar tus tareas pendientes. ¡No olvides mantener tu productividad al máximo!'
     };
     //si alguna variable no existe o esta vacia, lanza un error 
     // inmediatamente con el nombre exacto de la variable que falta
